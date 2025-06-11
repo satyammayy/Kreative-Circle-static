@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:8000/gallery/? by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jun 2025 19:35:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>Kreative Circle</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Hamburger icon - hidden on desktop */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 60px; /* below navbar */
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                width: 200px;
+                height: calc(100vh - 60px);
+                gap: 1.5rem;
+                padding: 1rem 1.5rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.show {
+                transform: translateX(0);
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">Kreative Circle</a>
+        <div class="nav-links" id="navLinks">
+            <a href="../about/index.html">About</a>
+            <a href="index.html">Gallery</a>
+            <a href="../get-quote/index.html">Contact</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    
+<style>
+    .gallery-section {
+        padding: 4rem 2rem;
+    }
+
+    .gallery-title {
+        color: var(--primary-color);
+        text-shadow: var(--text-glow);
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    .category-filters {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+
+    .category-filter {
+        padding: 0.5rem 1.5rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 25px;
+        color: var(--primary-color);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .category-filter:hover,
+    .category-filter.active {
+        background: var(--primary-color);
+        color: var(--bg-color);
+        box-shadow: 0 0 15px var(--primary-color);
+    }
+    
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        grid-auto-rows: 250px;
+    }
+    
+    .gallery-card {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        grid-row: span 1;
+        cursor: pointer;
+    }
+
+    .gallery-card.portrait {
+        grid-row: span 2;
+    }
+    
+    .gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-card:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        cursor: zoom-out;
+    }
+
+    .modal img {
+        max-width: 90%;
+        max-height: 90vh;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+    }
+</style>
+
+<section class="gallery-section reveal">
+    <h2 class="gallery-title">Our Creative Gallery</h2>
+    
+    <div class="category-filters">
+        <a href="indexd41d.html?" class="category-filter active">
+            All
+        </a>
+        
+        <a href="index7a81.html?category=1" 
+           class="category-filter ">
+            Luhongba
+        </a>
+        
+        <a href="index9297.html?category=2" 
+           class="category-filter ">
+            Business
+        </a>
+        
+        <a href="indexdb58.html?category=3" 
+           class="category-filter ">
+            Fashion
+        </a>
+        
+        <a href="index3eca.html?category=4" 
+           class="category-filter ">
+            Nature
+        </a>
+        
+    </div>
+
+    <div class="gallery-grid">
+        
+        <div class="gallery-card" data-src="/media/gallery/57c43e7d-39ee-4950-8d94-b3fff70a087c.jpeg">
+            <img src="../media/gallery/57c43e7d-39ee-4950-8d94-b3fff70a087c.jpeg" alt="Luhongba" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="/media/gallery/491465048_17849132583462577_145889613000100810_n..webp">
+            <img src="../media/gallery/491465048_17849132583462577_145889613000100810_n..webp" alt="Team" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="/media/gallery/494115176_18044402843393525_9128178003608626393_n..webp">
+            <img src="../media/gallery/494115176_18044402843393525_9128178003608626393_n..webp" alt="Manfete" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="../media/gallery/469186494_18292660093239238_5085013319982296435_n..jpg">
+            <img src="../media/gallery/469186494_18292660093239238_5085013319982296435_n..jpg" alt="Luhongba" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="/media/gallery/482830883_18174003703317171_1935267597189065871_n..webp">
+            <img src="../media/gallery/482830883_18174003703317171_1935267597189065871_n..webp" alt="Luhongba" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="../media/gallery/494383020_18364837093127188_2466935285893070443_n..jpg">
+            <img src="../media/gallery/494383020_18364837093127188_2466935285893070443_n..jpg" alt="Nature" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="../media/gallery/494892647_18364837129127188_5409131845882990749_n..jpg">
+            <img src="../media/gallery/494892647_18364837129127188_5409131845882990749_n..jpg" alt="Nature" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="/media/gallery/499578550_18055622039225343_5459778741443620894_n..webp">
+            <img src="../media/gallery/499578550_18055622039225343_5459778741443620894_n..webp" alt="Fashion" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="../media/gallery/c8c51228-b742-4a5f-ac60-19ca03dc230b.jpeg">
+            <img src="../media/gallery/c8c51228-b742-4a5f-ac60-19ca03dc230b.jpeg" alt="Fashion" onload="checkAspectRatio(this)">
+        </div>
+        
+        <div class="gallery-card" data-src="/media/gallery/342363282_920476262508879_8467828724587661759_n..webp">
+            <img src="../media/gallery/342363282_920476262508879_8467828724587661759_n..webp" alt="Luhongba" onload="checkAspectRatio(this)">
+        </div>
+        
+    </div>
+</section>
+
+<!-- Modal for image zoom -->
+<div class="modal" id="imageModal" onclick="closeModal()">
+    <img id="modalImage" src="#" alt="Zoomed image">
+</div>
+
+<script>
+    // Scroll reveal functionality
+    function reveal() {
+        const reveals = document.querySelectorAll('.reveal');
+        
+        reveals.forEach(element => {
+            const windowHeight = window.innerHeight;
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < windowHeight - elementVisible) {
+                element.classList.add('active');
+            }
+        });
+    }
+
+    // Check image aspect ratio and adjust layout
+    function checkAspectRatio(img) {
+        if (img.naturalHeight > img.naturalWidth) {
+            img.parentElement.classList.add('portrait');
+        }
+    }
+
+    // Modal functionality
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+
+    document.querySelectorAll('.gallery-card').forEach(card => {
+        card.addEventListener('click', function() {
+            modal.style.display = 'block';
+            modalImg.src = this.dataset.src;
+        });
+    });
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    window.addEventListener('scroll', reveal);
+    reveal(); // Initial check
+</script>
+
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Optional: close menu when clicking outside or on link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+
+        // Optional: close menu when clicking outside navLinks
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                navLinks.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+
+<!-- Mirrored from 127.0.0.1:8000/gallery/? by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jun 2025 19:35:54 GMT -->
+</html>

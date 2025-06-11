@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 127.0.0.1:8000/home/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jun 2025 19:35:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>Kreative Circle</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Hamburger icon - hidden on desktop */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 60px; /* below navbar */
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                width: 200px;
+                height: calc(100vh - 60px);
+                gap: 1.5rem;
+                padding: 1rem 1.5rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.show {
+                transform: translateX(0);
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">Kreative Circle</a>
+        <div class="nav-links" id="navLinks">
+            <a href="../about/index.html">About</a>
+            <a href="../gallery/index.html">Gallery</a>
+            <a href="../get-quote/index.html">Contact</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    
+
+<style>
+    /* Base styles */
+    :root {
+        --text-color: #333;
+        --bg-color: #fff;
+        --accent-color: #000;
+    }
+
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        color: var(--text-color);
+        background: var(--bg-color);
+        line-height: 1.6;
+        scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Fullscreen hero section */
+    .hero-section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4rem;
+        gap: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .hero-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-text {
+        text-align: left;
+        max-width: 600px;
+    }
+
+    .hero-text h1 {
+        font-size: 3rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero-text p {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.8;
+        opacity: 0;
+        animation: fadeInUp 1s ease forwards 0.3s;
+    }
+
+    /* New slide down message */
+    .slide-down-message {
+        max-width: 600px;
+        margin-top: 2rem;
+        font-size: 1.4rem;
+        font-weight: 300;
+        text-align: left;
+        color: var(--accent-color);
+
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: slideDownFadeIn 1s ease forwards;
+        animation-delay: 1.3s; /* triggers after hero text fade in */
+    }
+
+    @keyframes slideDownFadeIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero-image {
+        padding-top: 80px;
+        flex: 0 0 50vw; /* Fixed width */
+        max-height: 90vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        max-height: 90vh;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 1rem;
+    }
+
+    /* Scroll reveal animations */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Latest Works section with auto-scroll */
+    .latest-works {
+        position: relative;
+        overflow: hidden;
+        padding: 2rem 0;
+        background: var(--bg-color);
+        flex-shrink: 0;
+    }
+
+    .latest-works-scroll {
+        display: flex;
+        gap: 1rem;
+        animation: scroll 30s linear infinite;
+        padding: 0 1rem;
+    }
+
+    .latest-works-scroll:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-100% - 1rem)); }
+    }
+
+    .featured-photo {
+        flex: 0 0 auto;
+        width: 640px; /* 16:9 base width */
+        height: 360px; /* 16:9 base height */
+        overflow: hidden;
+    }
+
+    .featured-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+    }
+
+    .featured-photo:hover img {
+        filter: grayscale(0%);
+    }
+
+    /* Other sections styles */
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+        margin: 4rem 0 2rem;
+    }
+
+    .about-section, .contact-section {
+        padding: 2rem 1rem; /* Added sufficient padding */
+        text-align: center;
+        flex-shrink: 0;
+        background: var(--bg-color);
+    }
+
+    .social-links {
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        display: inline-block;
+        margin: 0 1rem;
+        font-size: 1.4rem;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        vertical-align: middle;
+    }
+
+    .social-links a:hover {
+        color: var(--accent-color);
+    }
+
+    .social-links i {
+        margin-right: 0.5rem;
+        font-size: 1.4rem;
+        vertical-align: middle;
+    }
+
+    /* Footer copyright */
+    footer {
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 0.9rem;
+        color: #777;
+        border-top: 1px solid #ddd;
+        margin-top: auto; /* Push footer to bottom */
+        background: var(--bg-color);
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            margin-top: 100px; /* fixed missing semicolon */
+            flex-direction: column;
+            padding: 2rem 1rem;
+            justify-content: center;
+            height: auto;
+        }
+
+        .hero-content {
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-text p {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        .slide-down-message {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .hero-image {
+            display: none;
+        }
+
+        /* Faster scrolling for smaller screens */
+        .latest-works-scroll {
+            animation-duration: 8s; /* scroll twice as fast */
+        }
+
+        /* Responsive featured photos */
+        .featured-photo {
+            width: 80vw; /* width relative to viewport width */
+            height: auto; /* maintain aspect ratio */
+            max-height: 45vh; /* limit max height */
+        }
+
+        .featured-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .hero-text h1 {
+            font-size: 1.8rem;
+            letter-spacing: 1.5px;
+        }
+       
+    .contact-section {
+        padding: 0.5rem 0.5rem;  /* reduce padding */
+        font-size: 0.9rem;       /* smaller font size */
+        text-align: center;      /* keep centered */
+    }
+    .social-links a {
+        font-size: 1.1rem;       /* slightly smaller links text */
+        margin: 0 0.5rem;        /* reduce horizontal margin */
+    }
+    .social-links i {
+        font-size: 1.1rem;       /* reduce icon size */
+        margin-right: 0.3rem;    /* smaller gap */
+    }
+}
+    
+</style>
+
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Hi, we're<br>Kreative Circle</h1>
+            <p>
+                We're a team of visual storytellers based in Imphal, dedicated to capturing the vibrant narratives of your weddings, events, and fashion aspirations.
+                Our passion is driven by the intricate details that make each moment unique, and our aim is to empower your vision through compelling and artistic imagery.
+                We are proud to create impactful visuals for our clients right here.
+            </p>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="../media/home.jpg" alt="Kreative Circle Photographer">
+    </div>
+</section>
+
+<!-- Latest Works Section -->
+<section class="latest-works reveal" id="latest-works">
+    <h2 class="section-title">Latest Works</h2>
+    <div class="latest-works-scroll">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+            <div class="featured-photo">
+                <img src="../media/gallery/482830883_18174003703317171_1935267597189065871_n..webp" alt="Luhongba">
+            </div>
+            
+        
+            
+            <div class="featured-photo">
+                <img src="../media/gallery/469186494_18292660093239238_5085013319982296435_n..jpg" alt="Luhongba">
+            </div>
+            
+        
+            
+        
+            
+            <div class="featured-photo">
+                <img src="../media/gallery/491465048_17849132583462577_145889613000100810_n..webp" alt="Team">
+            </div>
+            
+        
+            
+        
+        <!-- Duplicate featured photos for seamless scrolling -->
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+            <div class="featured-photo">
+                <img src="../media/gallery/482830883_18174003703317171_1935267597189065871_n..webp" alt="Luhongba">
+            </div>
+            
+        
+            
+            <div class="featured-photo">
+                <img src="../media/gallery/469186494_18292660093239238_5085013319982296435_n..jpg" alt="Luhongba">
+            </div>
+            
+        
+            
+        
+            
+            <div class="featured-photo">
+                <img src="../media/gallery/491465048_17849132583462577_145889613000100810_n..webp" alt="Team">
+            </div>
+            
+        
+            
+        
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section reveal">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="social-links">
+        <a href="https://www.instagram.com/kreative_circle/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://wa.me/919612455862?text=hi" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="mailto:someone@example.com">
+            <i class="fas fa-envelope"></i> Email
+        </a>
+    </div>
+</section>
+
+<footer>
+    &copy;  Kreative Circle
+</footer>
+
+<script>
+    // Scroll reveal functionality
+    function reveal() {
+        const reveals = document.querySelectorAll('.reveal');
+        
+        reveals.forEach(element => {
+            const windowHeight = window.innerHeight;
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < windowHeight - elementVisible) {
+                element.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', reveal);
+    reveal(); // Initial check
+
+    // Auto scroll down after 5 seconds to "Latest Works"
+    setTimeout(() => {
+        const latestWorksSection = document.getElementById('latest-works');
+        if (latestWorksSection) {
+            latestWorksSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 5000);
+</script>
+
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Optional: close menu when clicking outside or on link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+
+        // Optional: close menu when clicking outside navLinks
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                navLinks.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+
+<!-- Mirrored from 127.0.0.1:8000/home/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jun 2025 19:35:13 GMT -->
+</html>
